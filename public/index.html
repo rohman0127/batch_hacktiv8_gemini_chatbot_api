@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WanderAI — Asisten Travelling Pribadi Berbasis Gemini</title>
+  <meta name="description" content="Asisten travelling cerdas kelas dunia didukung oleh Google Gemini AI. Rencanakan itinerary liburan impian Anda dengan cepat dan mudah." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Ambient background glow effect -->
+  <div class="ambient-glow"></div>
+
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="chat-header">
+      <div class="brand-group">
+        <div class="brand-avatar">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>
+          </svg>
+        </div>
+        <div class="brand-meta">
+          <div class="brand-title-row">
+            <h2>WanderAI</h2>
+            <span class="badge-pill">Travel Pro</span>
+          </div>
+          <p class="brand-status">
+            <span class="status-dot"></span> Online • Gemini 3.6
+          </p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="clear-btn" type="button" class="icon-btn" title="Mulai Percakapan Baru">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+            <path d="M21 3v5h-5"/>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+            <path d="M8 16H3v5"/>
+          </svg>
+          <span class="btn-text">Reset Chat</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Chat Messages Container -->
+    <main id="chat-box" class="chat-box">
+      <!-- Welcome Screen (Tampil saat chat masih kosong) -->
+      <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-icon-glow">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="url(#cosmic-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="cosmic-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#818cf8"/>
+                <stop offset="50%" stop-color="#c084fc"/>
+                <stop offset="100%" stop-color="#f472b6"/>
+              </linearGradient>
+            </defs>
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+          </svg>
+        </div>
+        <h3>Rencanakan Liburan Impian Anda</h3>
+        <p class="welcome-desc">
+          Saya adalah asisten travel profesional berpengalaman 10 tahun. Beritahu saya kota tujuan dan durasi liburan Anda, dan saya akan buatkan itinerary lengkap beserta rekomendasi terbaik!
+        </p>
+
+        <!-- Prompt Suggestions / Quick Chips -->
+        <div class="prompt-chips">
+          <button type="button" class="chip" data-prompt="Buatkan itinerary liburan 3 hari 2 malam di Bali untuk pasangan.">
+            🏖️ 3 Hari di Bali
+          </button>
+          <button type="button" class="chip" data-prompt="Rekomendasi liburan 5 hari di Tokyo dan Kyoto ramah budget.">
+            🗾 5 Hari di Jepang
+          </button>
+          <button type="button" class="chip" data-prompt="Itinerary kuliner dan wisata alam 2 hari di Yogyakarta.">
+            🍲 Wisata Kuliner Jogja
+          </button>
+          <button type="button" class="chip" data-prompt="Tips packing hemat dan checklist penting untuk backpacker ke Eropa.">
+            🎒 Tips Backpacker
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Input Footer -->
+    <footer class="chat-footer">
+      <form id="chat-form" class="chat-form">
+        <div class="input-container">
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Ketik destinasi, durasi, atau pertanyaan liburan..."
+            autocomplete="off"
+            required
+          />
+          <button type="submit" id="send-btn" class="send-btn" aria-label="Kirim Pesan" title="Kirim">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </form>
+      <div class="footer-meta">
+        <span>Powered by <strong>Google Gemini AI</strong> • Menjawab khusus seputar travelling</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
